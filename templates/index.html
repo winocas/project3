@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코로나 현황</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <style>
+        h1 {text-align: center;}
+        p {text-align: center;}
+    </style>
+
+</head>
+
+<body>
+    <h1>오늘의 코로나 현황</h1>
+    <br><br><br>
+    <hr>
+    <p>
+    신규확진자 수 : {{ data2['newCase'] }}<br>
+    국내누적확진자 수 : {{ data1["TotalCase"] }} <br>
+    국내누적완치자 수 : {{ data1["TotalRecovered"] }}<br>
+    국내누적사망자 수 : {{ data1["TotalDeath"] }}<br>
+    
+    </p>
+    <hr>
+    <p text-align:center;>
+    신규확진자 수 : {{ data2['newCase'] }}<br>
+    현재격리자 수 : {{ data1["NowCase"] }}<br>
+    국내검사자 중(-ing) 수 : {{data1['checkingCounter']}}<br>
+    국내검사결과 양성률 : {{data1['casePercentage']}}
+    </p>
+
+</body>
+
+</html>
