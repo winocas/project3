@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        지역별 코로나
+    </title>
+    <style>
+        h1{text-align: center;}
+        h3{text-align: center;}
+        h5{text-align: center;}
+        input{text-align: center;}
+        p{text-align:center;}
+        table, th, td {
+        border: 1px solid #bcbcbc;}
+    </style>
+</head>
+<body>
+    <form method="POST" action="/cityinfo">
+        <h1> 지역별 코로나 현황 </h1>
+        <h3> 원하는 지역을 검색 </br></h3>
+        <h5> 서울 : seoul, 부산: busan, 대구 : daegu, 인천 : incheon,
+            광주 : gwangju, 대전 : daejeon, 울산 : ulsan, 세종 : sejong,<br>
+            경기 : gyeonggi, 강원 : gangwon, 충북 : chungbuk, 충남 : chungnam,
+            전북 : jeonbuk, 전남 : jeonnam, 경북 : gyeongbuk, 경남 : gyeongnam,
+            제주 : jeju </h5>
+        <div class= input align="center"> 
+            <input type="text" name="city" text-align:center;>
+            <button type="submit"> 코로나 정보 확인하기 </button>
+        </div>
+    </form>
+    <div>
+        <p>
+<!-- 
+            {{ data[city] }}<br>
+
+            {% for d in data[city]%}
+            {{ data[city][d] }}
+            {% endfor%} -->
+
+            <!-- {% for d in data[city] %}
+            {{ data[city][d] }}<br>
+            {% endfor%} -->
+
+            <table align="center">
+                <thead>
+                <tr>
+                <th>지역명</th>
+                <th>신규확진자</th>
+                <th>누적확진자</th>
+                <th>격리해제자</th>
+                <th>누적사망자</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for d in data[city] %}
+                    <td>{{ data[city][d] }}</td>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </p>
+    </div>
+</body>
+</html>

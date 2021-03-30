@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코로나 지역현황</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <style>
+        div > h1 {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div>
+        <h1> 지역별 누적확진자 수 </h1>
+        <canvas id="cum_infect"></canvas>
+    </div>
+
+
+
+    <script>
+        colorList = ["rgb(255, 99, 132)", "	rgb(118, 121, 204)", "rgb(255, 205, 86)",
+        "rgb(200, 99, 132)", "rgb(200, 162, 235)", "rgb(61,105,197)",
+        "rgb(209,218,238)", "rgb(160, 162, 235)", "rgb(131, 202, 169)",
+        "rgb(130, 99, 132)", "rgb(130, 162, 235)", "rgb(130, 205, 86)",
+        "rgb(60, 99, 132)", "rgb(231, 111, 89)", "rgb(60, 205, 86)",
+        "rgb(0, 99, 132)", "rgb(0, 162, 235)", "rgb(0, 205, 86)",
+    ]
+        var ctx_cum = document.getElementById('cum_infect').getContext('2d');
+        var cumChart = new Chart(ctx_cum, {
+            type: "doughnut",
+            data: {
+                labels: [{% for d in data %}"{{data[d]["countryName"]}}",{% endfor%}],
+                datasets: [{
+                    label: "My First Dataset",
+                    data: [{% for d in data %}{{data[d]["totalCase"]|replace(",","")| int}},{% endfor%}],
+                    backgroundColor: colorList//["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                }]
+            }
+        });
+    </script>
+
+    <div>
+        <h1> 지역별 신규확진자 수 </h1>
+        <canvas id="new_infect"></canvas>
+    </div>
+
+    <script>
+        colorList = ["rgb(255, 99, 132)", "	rgb(118, 121, 204)", "rgb(255, 205, 86)",
+        "rgb(200, 99, 132)", "rgb(200, 162, 235)", "rgb(61,105,197)",
+        "rgb(209,218,238)", "rgb(160, 162, 235)", "rgb(131, 202, 169)",
+        "rgb(130, 99, 132)", "rgb(130, 162, 235)", "rgb(130, 205, 86)",
+        "rgb(60, 99, 132)", "rgb(231, 111, 89)", "rgb(60, 205, 86)",
+        "rgb(0, 99, 132)", "rgb(0, 162, 235)", "rgb(0, 205, 86)",
+    ]
+        var ctx_new = document.getElementById('new_infect').getContext('2d');
+        var newChart = new Chart(ctx_new, {
+            type: "doughnut",
+            data: {
+                labels: [{% for d in data %}"{{data[d]["countryName"]}}",{% endfor%}],
+                datasets: [{
+                    label: "My First Dataset",
+                    data: [{% for d in data %}{{data[d]["newCase"]|replace(",","")| int}},{% endfor%}],
+                    backgroundColor: colorList//["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                }]
+            }
+        });
+    </script>
+
+</body>
+
+</html>
